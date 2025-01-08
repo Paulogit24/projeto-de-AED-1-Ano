@@ -86,7 +86,7 @@ login_frame.pack(fill="both", expand=True)
 
 # Carregar e exibir o logo
 try:
-    logo_img = Image.open("7flix.png")
+    logo_img = Image.open("7fliX.png")
     logo_img = logo_img.resize((200, 100), Image.ANTIALIAS)
     logo_photo = ImageTk.PhotoImage(logo_img)
     logo_label = tk.Label(login_frame, image=logo_photo, bg="black")
