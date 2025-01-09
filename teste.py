@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import os
 
+users = ".\\usuarios.txt"
 # Funções gerais
 def salvar_usuario(nome, senha):
     """Salvar o novo usuário no arquivo usuarios.txt."""
@@ -43,7 +44,10 @@ def registrar_usuario():
     if senha != confirmar_senha:
         messagebox.showerror("Erro", "As senhas não coincidem!")
         return
-
+    fileusers = open(users, "r", encoding="utf-8")
+    UserList = fileusers.readlines()
+    if nome in UserList:
+        messagebox.showerror("Erro", "nome de usuario já em uso")
     salvar_usuario(nome, senha)
     messagebox.showinfo("Sucesso", "Conta criada com sucesso!")
     voltar_para_login()
