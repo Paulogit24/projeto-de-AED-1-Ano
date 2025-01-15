@@ -31,7 +31,7 @@ def validaConta (userName, userPass): #Validar autenticação com uma conta: LOG
             msg = "Bem-vindo" + userName
             return msg
     msg = "O UserName ou a Password estão incorretos!"
-    CTkMessagebox.showinfo("error", msg)
+    #CTkMessagebox.showerror("error", msg)
     return msg
 
 def criaconta(userName, userPass, userPassConfirm):   #Criar uma nova conta de utilizador
