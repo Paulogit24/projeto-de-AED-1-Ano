@@ -4,7 +4,6 @@ import webbrowser
 
 class UserManager:
     def __init__(self):
-        # Lista de usuários fictícia na memória (sem salvar em arquivo)
         self.users = {}
 
     def register_user(self, username, password):
@@ -99,13 +98,12 @@ class App:
         tk.Label(self.root, text="Home", font=("Arial", 24), fg='white', bg='black').pack(pady=20)
 
         series_list = [
-            Series("Outer Banks", "Outer Banks é uma série de mistério e aventura.", "https://youtu.be/pipb8KRUo9g?si=_vXSA884tjmI4zHj"),
+            Series("Outer Banks", "Numa ilha de ricos e pobres da Carolina do Norte, John B e o seu grupo coeso de amigos encontram mistério e aventura numa caça ao tesouro perdido.", "https://youtu.be/pipb8KRUo9g?si=_vXSA884tjmI4zHj"),
             Series("Squid Game", "Squid Game é uma série de suspense e drama.", "https://youtu.be/lQBmZBJCYcY?si=UwWbwzus7BQei8Iq"),
             Series("Cobra Kai", "Cobra Kai é uma série que continua a história de Karate Kid.", "https://youtu.be/xCwwxNbtK6Y?si=6oDRwRoTIS4-pjtJ"),
             Series("Stranger Things", "Stranger Things mistura ficção científica e terror.", "https://youtu.be/otutSrxYpa4?si=PsPP5WzcU3hh3OLD"),
-            Series("Teen Wolf", "**Teen Wolf** segue Scott McCall, um adolescente que vira lobisomem e enfrenta ameaças sobrenaturais.", "https://youtu.be/BmHM5eUp9w4?si=2_P20b6sslN_Ktiw"),
-            Series("Cobra Kai", "Cobra Kai é uma série que continua a história de Karate Kid.", "https://youtu.be/xCwwxNbtK6Y?si=6oDRwRoTIS4-pjtJ"),
-            Series("Stranger Things", "Stranger Things mistura ficção científica e terror.", "https://youtu.be/otutSrxYpa4?si=PsPP5WzcU3hh3OLD"),
+            Series("Teen Wolf", "Teen Wolf segue Scott McCall, um adolescente que vira lobisomem e enfrenta ameaças sobrenaturais.", "https://youtu.be/BmHM5eUp9w4?si=2_P20b6sslN_Ktiw"),
+            Series("You", "Um jovem perigosamente charmoso e intensamente obsessivo toma medidas extremas para se inserir na vida daqueles por quem ele é fascinado.", "https://youtu.be/xcicf6XmtnM?si=gxIBPcQAx1_LbvYB"),
         ]
 
         series_frame = tk.Frame(self.root, bg='black')
