@@ -104,7 +104,6 @@ class App:
             Series("Squid Game", "Jogos mortais por um prêmio tentador.", "https://youtu.be/lQBmZBJCYcY", "squidgame.jpg"),
             Series("Cobra Kai", "Rivalidades reacendidas no mundo do Karatê.", "https://youtu.be/xCwwxNbtK6Y", "cobrakai.jpg"),
             Series("Stranger Things", "Forças sobrenaturais e experimentos secretos.", "https://youtu.be/otutSrxYpa4", "strangerthings.jpg"),
-
             Series("Breaking Bad", "Um professor do secundário com cancro do pulmão terminal junta-se a um ex-aluno para fabricar e vender metanfetaminas como forma de garantir o futuro da sua família. ""Ruptura Total"" venceu um total de 16 Emmys, incluindo quatro para Melhor Ator Dramático, para Bryan Cranston.", "https://youtu.be/2-W6_6gJda0?si=x2u9r95P8RoVfets", "breakingbad.jpg"),
             Series("Daredevil", "Cego desde criança, Matt Murdock luta contra a injustiça em Nova Iorque, durante o dia como advogado e à noite na pele do super-herói Demolidor. O ""Demolidor"" recebeu três nomeações para os Emmys de 2015 em categorias criativas, incluindo efeitos visuais.", "https://youtu.be/jAy6NJ_D5vU?si=HrCExxZg38PcwqzX", "Daredevil.jpg"),
             Series("Game of Thrones", "Game of Thrones conta a história de um lugar onde uma força destruiu o equilíbrio das estações, há muito tempo. Em uma terra onde os verões podem durar vários anos e o inverno toda uma vida, as reivindicações e as forças sobrenaturais correm as portas do Reino dos Sete Reinos.", "https://youtu.be/KPLWWIOCOOQ?si=aw47eEKzJTBd1Hkt", "GameofThrones .jpg"),
