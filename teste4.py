@@ -1,7 +1,10 @@
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk  
+from tkinter import ttk
+from PIL import Image, ImageTk
 import webbrowser
+import os
+
 
 class UserManager:
     def __init__(self):
@@ -16,6 +19,7 @@ class UserManager:
     def validate_user(self, username, password):
         return self.users.get(username) == password
 
+
 class Series:
     def __init__(self, title, description, link, image_path):
         self.title = title
@@ -23,11 +27,12 @@ class Series:
         self.link = link
         self.image_path = image_path
 
+
 class App:
     def __init__(self, root):
         self.root = root
         self.root.title("7FLIX")
-        self.root.geometry("1200x800")  # Aumentei para caber as imagens
+        self.root.geometry("1200x800")
         self.root.configure(bg='black')
         self.user_manager = UserManager()
 
@@ -91,7 +96,6 @@ class App:
 
     def admin_screen(self):
         self.clear_window()
-        # Tela para admin
         tk.Label(self.root, text="Bem-vindo ao Painel de Administrador", font=("Arial", 24), fg='white', bg='black').pack(pady=20)
 
     def create_home_screen(self):
@@ -104,27 +108,42 @@ class App:
             Series("Squid Game", "Jogos mortais por um prêmio tentador.", "https://youtu.be/lQBmZBJCYcY", "squidgame.jpg"),
             Series("Cobra Kai", "Rivalidades reacendidas no mundo do Karatê.", "https://youtu.be/xCwwxNbtK6Y", "cobrakai.jpg"),
             Series("Stranger Things", "Forças sobrenaturais e experimentos secretos.", "https://youtu.be/otutSrxYpa4", "strangerthings.jpg"),
-            Series("Breaking Bad", "Um professor do secundário com cancro do pulmão terminal junta-se a um ex-aluno para fabricar e vender metanfetaminas como forma de garantir o futuro da sua família. ""Ruptura Total"" venceu um total de 16 Emmys, incluindo quatro para Melhor Ator Dramático, para Bryan Cranston.", "https://youtu.be/2-W6_6gJda0?si=x2u9r95P8RoVfets", "breakingbad.jpg"),
-            Series("Daredevil", "Cego desde criança, Matt Murdock luta contra a injustiça em Nova Iorque, durante o dia como advogado e à noite na pele do super-herói Demolidor. O ""Demolidor"" recebeu três nomeações para os Emmys de 2015 em categorias criativas, incluindo efeitos visuais.", "https://youtu.be/jAy6NJ_D5vU?si=HrCExxZg38PcwqzX", "Daredevil.jpg"),
-            Series("Game of Thrones", "Game of Thrones conta a história de um lugar onde uma força destruiu o equilíbrio das estações, há muito tempo. Em uma terra onde os verões podem durar vários anos e o inverno toda uma vida, as reivindicações e as forças sobrenaturais correm as portas do Reino dos Sete Reinos.", "https://youtu.be/KPLWWIOCOOQ?si=aw47eEKzJTBd1Hkt", "GameofThrones .jpg"),
-            Series("Jack Ryan", "Jack Ryan (John Krasinski) é um promissor analista da CIA que recebe uma missão perigosa após a descoberta de uma série de transferências bancárias duvidosas. Ao investigar um padrão de comunicações terroristas, ele se depara com uma intrincada estratégia que tem como meta a destruição do mundo - a começar pelos EUA", "https://youtu.be/K9KAnx4EvaE?si=Ta-gQJ9IrHAgcN6-", "JackRyan.jpg"),
+            Series("Breaking Bad", "Um professor de química fabrica metanfetaminas para sustentar sua família.", "https://youtu.be/2-W6_6gJda0", "breakingbad.jpg"),
         ]
 
-        series_frame = tk.Frame(self.root, bg='black')
-        series_frame.pack(pady=20)
+        canvas = tk.Canvas(self.root, bg='black')
+        scrollbar = ttk.Scrollbar(self.root, orient="vertical", command=canvas.yview)
+        series_frame = tk.Frame(canvas, bg='black')
 
-        for serie in series_list:
+        series_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        canvas.create_window((0, 0), window=series_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+
+        columns = 4
+        for index, serie in enumerate(series_list):
+            row = index // columns
+            col = index % columns
+
             serie_frame = tk.Frame(series_frame, bd=2, relief="groove", bg='black')
-            serie_frame.pack(side="left", padx=15, pady=15)
+            serie_frame.grid(row=row, column=col, padx=10, pady=10)
 
             try:
-                image = Image.open(serie.image_path)
-                image = image.resize((200, 300))  # Redimensiona para caber
-                image = ImageTk.PhotoImage(image)
-                tk.Label(serie_frame, image=image, bg='black').pack()
-                serie_frame.image = image  # Prevenir garbage collection
+                if os.path.exists(serie.image_path):
+                    image = Image.open(serie.image_path)
+                    image = image.resize((200, 300))  # Ajusta o tamanho da imagem
+                    image = ImageTk.PhotoImage(image)
+                    tk.Label(serie_frame, image=image, bg='black').pack()
+                    serie_frame.image = image  # Prevenir garbage collection
+                else:
+                    tk.Label(serie_frame, text="Imagem indisponível", bg='black', fg='red').pack()
             except Exception as e:
-                tk.Label(serie_frame, text="Imagem indisponível", bg='black', fg='red').pack()
+                tk.Label(serie_frame, text="Erro ao carregar imagem", bg='black', fg='red').pack()
 
             tk.Label(serie_frame, text=serie.title, font=("Arial", 14, "bold"), fg='white', bg='black').pack()
             tk.Label(serie_frame, text=serie.description, wraplength=200, fg='white', bg='black').pack()
@@ -133,8 +152,8 @@ class App:
     def watch_serie(self, link):
         webbrowser.open(link)
 
+
 if __name__ == "__main__":
-    
     root = tk.Tk()
     app = App(root)
     root.mainloop()
