@@ -26,6 +26,7 @@ def fazer_login():
 
     if usuario in usuarios and usuarios[usuario] == senha:
         messagebox.showinfo("Login", f"Bem-vindo, {usuario}!")
+        mostrar_pagina_principal()
     else:
         messagebox.showerror("Erro", "Usuário ou senha incorretos!")
 
