@@ -77,7 +77,7 @@ class App:
         bottom_menu_frame.pack(side='bottom', fill='x')
 
         tk.Button(bottom_menu_frame, text="Ajuda", bg='black', fg='white', font=("Arial", 12),
-                  command=lambda: messagebox.showinfo("Ajuda", "Bem vindo podes criar conta, para aceder ao website! :)")).pack(side='left', padx=10)
+                  command=lambda: messagebox.showinfo("Ajuda", "Bem vindo podes criar a conta, para aceder ao website! :)")).pack(side='left', padx=10)
         tk.Button(bottom_menu_frame, text="Sobre", bg='black', fg='white', font=("Arial", 12),
                   command=lambda: messagebox.showinfo("Sobre", "7FLIX é uma plantaforma de divulgar séries, seja bem-vindo")).pack(side='left', padx=10)
 
